@@ -6,7 +6,7 @@ private:
     std::string object;
     std::string status;
     std::string owner;
-    bool has;
+    std::string has;
 
 public:
     Condition();
@@ -15,10 +15,10 @@ public:
     void setObject(std::string object);
     void setStatus(std::string status);
     void setOwner(std::string owner);
-    void setHas(bool has);
+    void setHas(std::string has);
 
     std::string getObject();
     std::string getStatus();
     std::string getOwner();
-    bool getHas();
+    std::string getHas();
 }

@@ -23,7 +23,7 @@ void Condition::setOwner(std::string owner) {
 }
 
 
-void Condition::setHas(bool has) {
+void Condition::setHas(std::string has) {
     this->has = has;
 }
 
@@ -39,6 +39,6 @@ std::string Condition::getOwner() {
     return owner;
 }
 
-bool Condition::getHas() {
+std::string Condition::getHas() {
     return has;
 }
