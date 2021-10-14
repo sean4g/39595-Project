@@ -60,9 +60,9 @@ Condition* XMLparser::parseCondition(TiXmlElement* element) {
     return condition;
 }
 
-TurnOn* XMLparser::parseTurnOn(TiXmlElement* element) {
+Turnon* XMLparser::parseTurnOn(TiXmlElement* element) {
 
-    TurnOn* turnOn = new TurnOn();
+    Turnon* turnOn = new Turnon();
 
     for (TiXmlNode* node = element->IterateChildren(NULL); node != NULL; node = element->IterateChildren(node)) {
         TiXmlElement* childElement = node->ToElement();
@@ -93,7 +93,7 @@ Attack* XMLparser::parseAttack(TiXmlElement* element) {
                 attack->setCondition(parseCondition(childElement));
             }
             else if (name == "action") {
-                attack->addAction(value);
+                attack->setAction(value);
             }
             else if (name == "print") {
                 attack->setPrint(value);
@@ -127,7 +127,7 @@ Room* XMLparser::parseRoom(TiXmlElement* element) {
                 room->addItem(item);
             }
             else if (name == "border") {
-                room->addBorder(parseItem(childElement));
+                room->addBorder(parseBorder(childElement));
             } 
             else if (name == "container") {
                 //room->addContainer(parseItem(childElement));
@@ -142,7 +142,7 @@ Room* XMLparser::parseRoom(TiXmlElement* element) {
                 room->addCreature(creature);
             }   
             else if (name == "Trigger") {
-                room->addTrigger(parseItem(childElement));
+                room->addTrigger(parseTrigger(childElement));
             }             
         }
     }
@@ -167,7 +167,7 @@ Item* XMLparser::parseItem(TiXmlElement* element) {
                 item->setStatus(value);
             }
             else if (name == "turnon") {
-                item->setTurnOn(parseTurnOn(childElement));
+                item->setTurnon(parseTurnOn(childElement));
             }
         }
     }
@@ -208,10 +208,10 @@ Creature* XMLparser::parseCreature(TiXmlElement* element) {
                 creature->setVulnerability(value);
             }
             else if (name == "attack") {
-                creature->setAttack(parseAttack(childElement));
+                creature->addAttack(parseAttack(childElement));
             }
             else if (name == "trigger") {
-                creature->setTrigger(parseTrigger(childElement));
+                creature->addTrigger(parseTrigger(childElement));
             }
         }
     }
@@ -235,19 +235,22 @@ Container* XMLparser::parseContainer(TiXmlElement* element) {
                 container->setAccept(value);
             }
             else if (name == "trigger") {
-                creature->setTrigger(parseTrigger(childElement));
+                container->addTrigger(parseTrigger(childElement));
+            }
+            else if (name == "condition") {
+                container->addCondition(parseCondition(childElement));
             }
             else if (name == "item") {
                 Item* item = new Item();
                 item->setName(value);
-                creature->setItem(item);
+                container->setItem(item);
             }
         }
     }
-    return creature;
+    return container;
 }
 
-Map* XMLParser::parseXML(std::string filename) {
+Map* XMLparser::parseXML(std::string filename) {
 	TiXmlDocument doc(filename);
 	doc.LoadFile();
 

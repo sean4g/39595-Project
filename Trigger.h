@@ -27,4 +27,4 @@ public:
     std::string getAction();
 
     Condition* getCondition();
-}
+};

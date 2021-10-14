@@ -31,4 +31,4 @@ public:
 
     std::vector<Condition*> getConditions();
     std::vector<Trigger*> getTriggers();
-}
+};

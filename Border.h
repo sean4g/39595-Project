@@ -15,4 +15,4 @@ public:
     std::string getDirection();
     std::string getName();
 
-}
+};

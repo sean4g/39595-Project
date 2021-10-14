@@ -4,7 +4,7 @@
 #include "Border.h"
 #include "Condition.h"
 #include "Trigger.h"
-#include "TurnOn.h"
+#include "Turnon.h"
 #include "Creature.h"
 #include "Container.h"
 #include "Item.h"
@@ -25,7 +25,7 @@ private:
     Creature* parseCreature(TiXmlElement* element);
     Container* parseContainer(TiXmlElement* element);
 
-    TurnOn* parseTurnOn(TiXmlElement* element);
+    Turnon* parseTurnOn(TiXmlElement* element);
     Condition* parseCondition(TiXmlElement* element);
     Trigger* parseTrigger(TiXmlElement* element);
     Attack* parseAttack(TiXmlElement* element);
@@ -33,4 +33,4 @@ private:
 public:
     Map* parseXML(std::string filename);
 
-}
+};

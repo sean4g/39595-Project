@@ -25,4 +25,4 @@ public:
     std::vector<Item*> getItems();
     std::vector<Container*> getContainers();
     std::vector<Creature*> getCreatures();
-}
+};

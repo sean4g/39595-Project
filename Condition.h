@@ -21,4 +21,4 @@ public:
     std::string getStatus();
     std::string getOwner();
     std::string getHas();
-}
+};

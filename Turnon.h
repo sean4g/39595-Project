@@ -16,4 +16,4 @@ public:
 
     std::string getPrint();
     std::string getAction();
-}
+};

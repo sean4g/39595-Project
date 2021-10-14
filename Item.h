@@ -24,4 +24,4 @@ public:
     std::string getStatus();
 
     Turnon* getTurnon();
-}
+};
