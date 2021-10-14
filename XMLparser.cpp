@@ -265,7 +265,7 @@ Map* XMLparser::parseXML(std::string filename) {
 		std::cerr << "Invalid XML file, should start with a Students array" << std::endl;
 		return map;
 	}
-	for (TiXmlNode* node = element->IterateChildren(NULL); node != NULL; node = element->IterateChildren(node)) {
+	for (TiXmlNode* node = rootElement->IterateChildren(NULL); node != NULL; node = rootElement->IterateChildren(node)) {
         TiXmlElement* childElement = node->ToElement();
         if (childElement != NULL) {
             std::string name = childElement->ValueStr();

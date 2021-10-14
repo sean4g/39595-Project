@@ -22,7 +22,7 @@ public:
     virtual ~Room();
 
     void setName(std::string name);
-    void setDescription(std::string description):
+    void setDescription(std::string description);
     void setType(std::string type);
 
     void addItem(Item* item);
@@ -32,7 +32,7 @@ public:
     void addTrigger(Trigger* trigger);
 
     std::string getName();
-    std::string getDescription():
+    std::string getDescription();
     std::string getType();
 
     std::vector<Item*> getItems();

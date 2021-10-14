@@ -56,7 +56,7 @@ void Room::addContainer(Container* container) {
     containers.push_back(container);
 }
 
-void ::addCreature(Creature* creature) {
+void Room::addCreature(Creature* creature) {
     creatures.push_back(creature);
 }
 

@@ -7,7 +7,7 @@ private:
     std::string name;
 public:
     Border();
-    virtual ~Border;
+    virtual ~Border();
     
     void setDirection(std::string direction);
     void setName(std::string name);

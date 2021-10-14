@@ -17,7 +17,7 @@ void Attack::setAction(std::string action) {
     this->action = action;
 }
 
-void Trigger::setCondition(Condition* condition) {
+void Attack::setCondition(Condition* condition) {
     this->condition = condition;
 }
 

@@ -14,7 +14,7 @@ private:
 
 public:
     Map();
-    ~Map();
+    virtual ~Map();
 
     void addRoom(Room* room);
     void addItem(Item* item);

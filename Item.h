@@ -17,7 +17,7 @@ public:
     void setWriting(std::string writing);
     void setStatus(std::string status);
 
-    void setTurnon(Condition* Turnon);
+    void setTurnon(Turnon* Turnon);
 
     std::string getName();
     std::string getWriting();
