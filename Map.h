@@ -15,9 +15,9 @@ private:
 public:
     Map();
     ~Map();
-    
+
     void addRoom(Room* room);
-    void addItem(Item* item;
+    void addItem(Item* item);
     void addContainer(Container* container);
     void addCreature(Creature* creature);
 

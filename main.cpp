@@ -16,6 +16,6 @@ int main(int argc, char** args) {
 		std::cin.get();
 	}
 
-    XMLParser parser;
+    XMLparser parser;
     Map* map = parser.parseXML(filename);
 }

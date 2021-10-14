@@ -246,3 +246,41 @@ Container* XMLparser::parseContainer(TiXmlElement* element) {
     }
     return creature;
 }
+
+Map* XMLParser::parseXML(std::string filename) {
+	TiXmlDocument doc(filename);
+	doc.LoadFile();
+
+    Map* map = new Map();
+
+	TiXmlElement* rootElement = doc.RootElement();
+	if (rootElement == NULL) {
+		std::cerr << "Invalid XML file, contains no data" << std::endl;
+		return map;
+	}
+	if (rootElement->ValueStr() != "Map") {
+		std::cerr << "Invalid XML file, should start with a Students array" << std::endl;
+		return map;
+	}
+	for (TiXmlNode* node = element->IterateChildren(NULL); node != NULL; node = element->IterateChildren(node)) {
+        TiXmlElement* childElement = node->ToElement();
+        if (childElement != NULL) {
+            std::string name = childElement->ValueStr();
+            std::string value = childElement->GetText();
+            if (name == "room") {
+                map->addRoom(parseRoom(childElement));
+            }
+            else if (name == "item") {
+                map->addItem(parseItem(childElement));
+            }
+            else if (name == "container") {
+                map->addContainer(parseContainer(childElement));
+            }
+            else if (name == "creature") {
+                map->addCreature(parseCreature(childElement));
+            }
+        }
+    }
+    return map;
+}
+
