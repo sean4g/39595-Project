@@ -1,4 +1,5 @@
 #include <string>
+#define TIXML_USE_STL
 #include <vector>
 #include <iostream>
 #include <unordered_map>
@@ -243,7 +244,7 @@ Container* XMLparser::parseContainer(TiXmlElement* element) {
             else if (name == "item") {
                 Item* item = new Item();
                 item->setName(value);
-                container->setItem(item);
+                container->addItem(item);
             }
         }
     }

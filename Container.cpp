@@ -15,15 +15,17 @@ Container::~Container() {
         delete trigger;
     }
     triggers.clear();
+
+    for (Item* item : items){
+        delete item;
+    }
+    items.clear();
 }
 
 void Container::setName(std::string name) { 
     this->name = name;
 }
 
-void Container::setItem(std::string item) { 
-    this->item = item;
-}
 void Container::setStatus(std::string status) { 
     this->status = status;
 }
@@ -32,6 +34,9 @@ void Container::setAccept(std::string Accept) {
     this->accept = accept;
 }
 
+void Container::addItem(Item* item) { 
+    items.push_back(item);
+}
 void Container::addCondition(Condition* condition) {
     conditions.push_back(condition);
 }
@@ -44,15 +49,16 @@ std::string Container::getName() {
     return name;
 }
 
-std::string Container::getItem() {
-    return item;
-}
 std::string Container::getStatus() {
     return status;
 }
 
 std::string Container::getAccept() {
     return accept;
+}
+
+std::vector<Item*> Container::getItems() {
+    return items;
 }
 
 std::vector<Condition*> Container::getConditions() {
