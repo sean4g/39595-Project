@@ -9,6 +9,7 @@ Item::~Item() {
 }
 
 void Item::setName(std::string name) { 
+    std::cout << "Item name set to " << name << std::endl;
     this->name = name;
 }
 

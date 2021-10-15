@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <unordered_map>
 #include "Map.h"
 #include "Border.h"
 #include "Condition.h"
@@ -24,7 +25,7 @@ private:
     Item* parseItem(TiXmlElement* element);
     Border* parseBorder(TiXmlElement* element);
     Creature* parseCreature(TiXmlElement* element);
-    Container* parseContainer(TiXmlElement* element);
+    Container* parseContainer(TiXmlElement* element, std::unordered_map<std::string, int> umap);
 
     Turnon* parseTurnOn(TiXmlElement* element);
     Condition* parseCondition(TiXmlElement* element);
