@@ -19,6 +19,10 @@ void Item::setStatus(std::string status) {
     this->status = status;
 }
 
+void Item::setTurnon(Turnon* turnon) {
+    this->turnon = turnon;
+}
+
 std::string Item::getName() {
     return name;
 }
@@ -28,4 +32,8 @@ std::string Item::getWriting() {
 }
 std::string Item::getStatus() {
     return status;
+}
+
+Turnon* Item::getTurnon() {
+    return turnon;
 }

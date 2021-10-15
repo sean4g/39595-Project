@@ -13,15 +13,15 @@ void Turnon::setPrint(std::string print) {
 }
 
 
-void Condition::setAction(std::string action) {
+void Turnon::setAction(std::string action) {
     this->action = action;
 }
 
 
-std::string Condition::getPrint() {
+std::string Turnon::getPrint() {
     return print;
 }
 
-std::string Condition::getAction() {
+std::string Turnon::getAction() {
     return action;
 }

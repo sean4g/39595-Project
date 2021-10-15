@@ -1,5 +1,4 @@
 #include <string>
-#define TIXML_USE_STL
 #include <vector>
 #include <iostream>
 #include <unordered_map>
@@ -262,29 +261,29 @@ Map* XMLparser::parseXML(std::string filename) {
 		std::cerr << "Invalid XML file, contains no data" << std::endl;
 		return map;
 	}
-	if (rootElement->ValueStr() != "Map") {
-		std::cerr << "Invalid XML file, should start with a Students array" << std::endl;
-		return map;
-	}
-	for (TiXmlNode* node = rootElement->IterateChildren(NULL); node != NULL; node = rootElement->IterateChildren(node)) {
-        TiXmlElement* childElement = node->ToElement();
-        if (childElement != NULL) {
-            std::string name = childElement->ValueStr();
-            std::string value = childElement->GetText();
-            if (name == "room") {
-                map->addRoom(parseRoom(childElement));
-            }
-            else if (name == "item") {
-                map->addItem(parseItem(childElement));
-            }
-            else if (name == "container") {
-                map->addContainer(parseContainer(childElement));
-            }
-            else if (name == "creature") {
-                map->addCreature(parseCreature(childElement));
-            }
-        }
-    }
+    
+	// for (TiXmlNode* node = rootElement->IterateChildren(NULL); node != NULL; node = rootElement->IterateChildren(node)) {
+    //     TiXmlElement* childElement = node->ToElement();
+    //     if (childElement != NULL) {
+    //         std::string name = childElement->ValueStr();
+    //         std::string value = childElement->GetText();
+    //         if (name == "room") {
+    //             map->addRoom(parseRoom(childElement));
+    //         }
+    //         else if (name == "item") {
+    //             map->addItem(parseItem(childElement));
+    //         }
+    //         else if (name == "container") {
+    //             map->addContainer(parseContainer(childElement));
+    //         }
+    //         else if (name == "creature") {
+    //             map->addCreature(parseCreature(childElement));
+    //         }
+    //     }
+    // }
+    TiXmlNode* node = rootElement->IterateChildren(NULL);
+    TiXmlElement* childElement = node->ToElement();
+    parseRoom(childElement);
     return map;
 }
 

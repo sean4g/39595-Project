@@ -18,4 +18,5 @@ int main(int argc, char** args) {
 
     XMLparser parser;
     Map* map = parser.parseXML(filename);
+	delete map;
 }
