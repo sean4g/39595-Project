@@ -3,18 +3,22 @@
 
 void Map::insertRoom(Room* room) {
     roomMap.insert(std::pair<std::string, Room*>(room->getName(), room));
+    std::cout << "Added room " << room->getName() << " to Map" << std::endl;
 }
 
 void Map::insertItem(Item* item) {
     itemMap.insert(std::pair<std::string, Item*>(item->getName(), item));
+    std::cout << "Added item " << item->getName() << " to Map" << std::endl;
 }
 
 void Map::insertContainer(Container* container) {
     containerMap.insert(std::pair<std::string, Container*>(container->getName(), container));
+    std::cout << "Added container " << container->getName() << " to Map" << std::endl;
 }
 
 void Map::insertCreature(Creature* creature) {
     creatureMap.insert(std::pair<std::string, Creature*>(creature->getName(), creature));
+    std::cout << "Added creature " << creature->getName() << " to Map" << std::endl;
 }
  
 Room* Map::findRoom(std::string name) {
@@ -105,7 +109,7 @@ Map::~Map() {
     //         delete container;
     //     }
     // }
-    containers.clear();
+    //containers.clear();
 
     std::vector<Creature*>().swap(creatures);
     // for (Creature* creature : creatures){
@@ -116,22 +120,18 @@ Map::~Map() {
 
 void Map::addRoom(Room* room) {
     rooms.push_back(room);
-    std::cout << "Added room " << room->getName() << " to Map" << std::endl;
 }
 
 void Map::addItem(Item* item) {
     items.push_back(item);
-    std::cout << "Added item " << item->getName() << " to Map" << std::endl;
 }
 
 void Map::addContainer(Container* container) {
     containers.push_back(container);
-    std::cout << "Added container " << container->getName() << " to Map" << std::endl;
 }
 
 void Map::addCreature(Creature* creature) {
     creatures.push_back(creature);
-    std::cout << "Added creature " << creature->getName() << " to Map" << std::endl;
 }
 
 std::vector<Room*> Map::getRooms() {

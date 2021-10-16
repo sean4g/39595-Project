@@ -6,19 +6,26 @@ Attack::Attack() {
 }
 
 Attack::~Attack() {
-    delete condition;
+    for (Condition* condition : conditions){
+        delete condition;
+    }
+    conditions.clear();
+    actions.clear();
 }
 
 void Attack::setPrint(std::string print) {
     this->print = print;
+    std::cout << "Attack print set to " << print << std::endl;
 }
 
 void Attack::addAction(std::string action) {
     actions.push_back(action);
+    std::cout << "Added action " << action << " to Attack" << std::endl;
 }
 
-void Attack::setCondition(Condition* condition) {
-    this->condition = condition;
+void Attack::addCondition(Condition* condition) {
+    conditions.push_back(condition);
+    std::cout << "Added attack condition" << std::endl;
 }
 
 std::string Attack::getPrint() {
@@ -29,6 +36,6 @@ std::vector<std::string> Attack::getActions() {
     return actions;
 }
 
-Condition* Attack::getCondition() {
-    return condition;
+std::vector<Condition*> Attack::getConditions() {
+    return conditions;
 }

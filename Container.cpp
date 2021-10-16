@@ -20,6 +20,8 @@ Container::~Container() {
         delete item;
     }
     items.clear();
+
+    accepts.clear();
 }
 
 void Container::setName(std::string name) { 

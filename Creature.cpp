@@ -16,6 +16,9 @@ Creature::~Creature() {
         delete trigger;
     }
     triggers.clear();
+
+    vulnerabilities.clear();
+    
 }
 
 void Creature::setName(std::string name) { 

@@ -6,6 +6,7 @@ Turnon::Turnon() {
 }
 
 Turnon::~Turnon() {
+    actions.clear();
 }
 
 void Turnon::setPrint(std::string print) {

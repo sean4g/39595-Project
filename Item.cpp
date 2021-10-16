@@ -6,6 +6,10 @@ Item::Item() {
 }
 
 Item::~Item() {
+    for (Trigger* trigger : triggers){
+        delete trigger;
+    }
+    triggers.clear();
 }
 
 void Item::setName(std::string name) { 

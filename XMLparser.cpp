@@ -91,7 +91,7 @@ Attack* XMLparser::parseAttack(TiXmlElement* element) {
         if (childElement != NULL) {
             std::string name = childElement->ValueStr();
             if (name == "condition") {
-                attack->setCondition(parseCondition(childElement));
+                attack->addCondition(parseCondition(childElement));
             }
             else if (name == "action") {
                 std::string value = childElement->GetText();
@@ -117,8 +117,6 @@ Room* XMLparser::parseRoom(TiXmlElement* element, Map* map) {
         if (childElement != NULL) {
             std::string name = childElement->ValueStr();
             if (name == "name") {
-                std::string value = childElement->GetText();
-                room->setName(value);
             }
             else if (name == "description") {
                 std::string value = childElement->GetText();                
@@ -169,8 +167,6 @@ Item* XMLparser::parseItem(TiXmlElement* element, Map* map) {
         if (childElement != NULL) {
             std::string name = childElement->ValueStr();
             if (name == "name") {
-                std::string value = childElement->GetText();
-                item->setName(value);
             }
             else if (name == "writing") {
                 std::string value = childElement->GetText();
@@ -219,8 +215,6 @@ Creature* XMLparser::parseCreature(TiXmlElement* element, Map* map) {
         if (childElement != NULL) {
             std::string name = childElement->ValueStr();
             if (name == "name") {
-                std::string value = childElement->GetText();
-                creature->setName(value);
             }
             else if (name == "vulnerability") {
                 std::string value = childElement->GetText();

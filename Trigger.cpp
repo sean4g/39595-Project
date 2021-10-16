@@ -10,8 +10,10 @@ Trigger::~Trigger() {
         delete condition;
     }
     conditions.clear();
+    
+    prints.clear();
+    actions.clear();
 }
-
 void Trigger::setType(std::string type) {
     this->type = type;
     std::cout << "Trigger type set to " << type << std::endl;
