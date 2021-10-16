@@ -34,34 +34,47 @@ Room::~Room() {
 
 void Room::setName(std::string name) { 
     this->name = name;
+    std::cout << "Room name set to " << name << std::endl;
 }
 
 void Room::setDescription(std::string description) { 
     this->description = description;
+    std::cout << "Room description set to " << description << std::endl;
 }
 
 void Room::setType(std::string type) { 
     this->type = type;
+    std::cout << "Room type set to " << type << std::endl;
+}
+
+void Room::setStatus(std::string status) {
+    this->status = status;
+    std::cout << "Room status set to " << status << std::endl;
 }
 
 void Room::addItem(Item* item) {
     items.push_back(item);
+    std::cout << "Added item " << item->getName() << " to Room" << std::endl;
 }
 
 void Room::addBorder(Border* border) {
     borders.push_back(border);
+    std::cout << "Added Border to Room" << std::endl;
 }
 
 void Room::addContainer(Container* container) {
     containers.push_back(container);
+    std::cout << "Added Container " << container->getName() << " to Room" << std::endl;
 }
 
 void Room::addCreature(Creature* creature) {
     creatures.push_back(creature);
+    std::cout << "Added Creature " << creature->getName() << " to Room" << std::endl;
 }
 
 void Room::addTrigger(Trigger* trigger) {
     triggers.push_back(trigger);
+    std::cout << "Added Trigger to Room" << std::endl;
 }
 
 std::string Room::getName() {
@@ -74,6 +87,10 @@ std::string Room::getDescription() {
 
 std::string Room::getType() {
     return type;
+}
+
+std::string Room::getStatus() {
+    return status;
 }
 
 std::vector<Item*> Room::getItems() {

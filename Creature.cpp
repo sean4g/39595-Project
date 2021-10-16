@@ -6,10 +6,6 @@ Creature::Creature() {
 }
 
 Creature::~Creature() {
-    for (Attack* attack : attacks){
-        delete attack;
-    }
-    attacks.clear();
 
     for (Condition* condition : conditions){
         delete condition;
@@ -24,34 +20,39 @@ Creature::~Creature() {
 
 void Creature::setName(std::string name) { 
     this->name = name;
+    std::cout << "Creature name set to " << name << std::endl;
 }
 
-void Creature::setVulnerability(std::string vulnerability) { 
-    this->vulnerability = vulnerability;
+void Creature::addVulnerability(std::string vulnerability) { 
+    vulnerabilities.push_back(vulnerability);
+    std::cout << "Added vulnerability " << vulnerability << " to Creature" << std::endl;
 }
 
-void Creature::addAttack(Attack* attack) {
-    attacks.push_back(attack);
+void Creature::setAttack(Attack* attack) {
+    this->attack = attack;
+    std::cout << "Creature attack set" << std::endl;
 }
 
 void Creature::addCondition(Condition* condition) {
     conditions.push_back(condition);
+    std::cout << "Added Condition to Creature" << std::endl;
 }
 
 void Creature::addTrigger(Trigger* trigger) {
     triggers.push_back(trigger);
+    std::cout << "Added Trigger to Creature" << std::endl;
 }
 
 std::string Creature::getName() {
     return name;
 }
 
-std::string Creature::getVulnerability() {
-    return vulnerability;
+std::vector<std::string> Creature::getVulnerabilities() {
+    return vulnerabilities;
 }
 
-std::vector<Attack*> Creature::getAttacks() {
-    return attacks;
+Attack* Creature::getAttack() {
+    return attack;
 }
 
 std::vector<Condition*> Creature::getConditions() {

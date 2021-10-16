@@ -6,7 +6,7 @@
 class Attack {
 private:
     std::string print;
-    std::string action;
+    std::vector<std::string> actions;
 
     Condition* condition;
 public:
@@ -14,12 +14,12 @@ public:
     virtual ~Attack();
 
     void setPrint(std::string print);
-    void setAction(std::string action);
+    void addAction(std::string action);
 
     void setCondition(Condition* condition);
 
     std::string getPrint();
-    std::string getAction();
+    std::vector<std::string> getActions();
 
     Condition* getCondition();
 };

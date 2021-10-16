@@ -8,10 +8,10 @@
 class Creature {
 private:
     std::string name;
-    std::string vulnerability;
+    std::vector<std::string> vulnerabilities;
 
 
-    std::vector<Attack*> attacks;
+    Attack* attack;
     std::vector<Condition*> conditions;
     std::vector<Trigger*> triggers;
 
@@ -20,16 +20,16 @@ public:
     virtual ~Creature();
 
     void setName(std::string name);
-    void setVulnerability(std::string vulnerability);
+    void addVulnerability(std::string vulnerability);
 
-    void addAttack(Attack* attack);
+    void setAttack(Attack* attack);
     void addCondition(Condition* condition);
     void addTrigger(Trigger* trigger);
 
     std::string getName();
-    std::string getVulnerability();
+    std::vector<std::string> getVulnerabilities();
 
-    std::vector<Attack*> getAttacks();
+    Attack* getAttack();
     std::vector<Condition*> getConditions();
     std::vector<Trigger*> getTriggers();
 };

@@ -12,6 +12,7 @@ private:
     std::string name;
     std::string description;
     std::string type;
+    std::string status;
 
     std::vector<Item*> items;
     std::vector<Border*> borders;
@@ -25,6 +26,7 @@ public:
     void setName(std::string name);
     void setDescription(std::string description);
     void setType(std::string type);
+    void setStatus(std::string status);
 
     void addItem(Item* item);
     void addBorder(Border* border);
@@ -35,6 +37,7 @@ public:
     std::string getName();
     std::string getDescription();
     std::string getType();
+    std::string getStatus();
 
     std::vector<Item*> getItems();
     std::vector<Border*> getBorders();

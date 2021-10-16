@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <unordered_map>
 #include "Room.h"
 #include "Item.h"
 #include "Container.h"
@@ -14,8 +15,18 @@ private:
     std::vector<Creature*> creatures;
 
 public:
+    std::unordered_map<std::string, Room*> roomMap;
+    std::unordered_map<std::string, Item*> itemMap;
+    std::unordered_map<std::string, Container*> containerMap;
+    std::unordered_map<std::string, Creature*> creatureMap;
+
     Map();
     virtual ~Map();
+
+    void insertRoom(Room* room);
+    void insertItem(Item* item);
+    void insertContainer(Container* container);
+    void insertCreature(Creature* creature);
 
     void addRoom(Room* room);
     void addItem(Item* item);

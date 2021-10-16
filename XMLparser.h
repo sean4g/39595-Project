@@ -25,7 +25,7 @@ private:
     Item* parseItem(TiXmlElement* element);
     Border* parseBorder(TiXmlElement* element);
     Creature* parseCreature(TiXmlElement* element);
-    Container* parseContainer(TiXmlElement* element, std::unordered_map<std::string, int> umap);
+    Container* parseContainer(TiXmlElement* element, Map* map);
 
     Turnon* parseTurnOn(TiXmlElement* element);
     Condition* parseCondition(TiXmlElement* element);

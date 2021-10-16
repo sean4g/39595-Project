@@ -95,7 +95,7 @@ Attack* XMLparser::parseAttack(TiXmlElement* element) {
             }
             else if (name == "action") {
                 std::string value = childElement->GetText();
-                attack->setAction(value);
+                attack->addAction(value);
             }
             else if (name == "print") {
                 std::string value = childElement->GetText();
@@ -217,10 +217,10 @@ Creature* XMLparser::parseCreature(TiXmlElement* element) {
             }
             else if (name == "vulnerability") {
                 std::string value = childElement->GetText();
-                creature->setVulnerability(value);
+                creature->addVulnerability(value);
             }
             else if (name == "attack") {
-                creature->addAttack(parseAttack(childElement));
+                creature->setAttack(parseAttack(childElement));
             }
             else if (name == "trigger") {
                 creature->addTrigger(parseTrigger(childElement));
@@ -230,7 +230,7 @@ Creature* XMLparser::parseCreature(TiXmlElement* element) {
     return creature;
 }
 
-Container* XMLparser::parseContainer(TiXmlElement* element, std::unordered_map<std::string, int> umap) {
+Container* XMLparser::parseContainer(TiXmlElement* element, Map* map) {
     Container* container = new Container();
     for (TiXmlNode* node = element->IterateChildren(NULL); node != NULL; node = element->IterateChildren(node)) {
         TiXmlElement* childElement = node->ToElement();
@@ -246,7 +246,7 @@ Container* XMLparser::parseContainer(TiXmlElement* element, std::unordered_map<s
             }
             else if (name == "accept") {
                 std::string value = childElement->GetText();
-                container->setAccept(value);
+                container->addAccept(value);
             }
             else if (name == "trigger") {
                 container->addTrigger(parseTrigger(childElement));
@@ -256,9 +256,8 @@ Container* XMLparser::parseContainer(TiXmlElement* element, std::unordered_map<s
             }
             else if (name == "item") {
                 std::string value = childElement->GetText();
-                int key = std::hash<std::string>()(value);
-                umap.insert({value, key});
                 Item* item = new Item();
+                map->itemMap.insert(std::pair<std::string, Item*>(value, item));
                 item->setName(value);
                 container->addItem(item);
             }
@@ -273,37 +272,15 @@ Map* XMLparser::parseXML(std::string filename) {
 
     Map* map = new Map();
 
-    std::unordered_map<std::string, int> umap;
-
 	TiXmlElement* rootElement = doc.RootElement();
 	if (rootElement == NULL) {
 		std::cerr << "Invalid XML file, contains no data" << std::endl;
 		return map;
 	}
-    
-	// for (TiXmlNode* node = rootElement->IterateChildren(NULL); node != NULL; node = rootElement->IterateChildren(node)) {
-    //     TiXmlElement* childElement = node->ToElement();
-    //     if (childElement != NULL) {
-    //         std::string name = childElement->ValueStr();
-    //         std::string value = childElement->GetText();
-    //         if (name == "room") {
-    //             map->addRoom(parseRoom(childElement));
-    //         }
-    //         else if (name == "item") {
-    //             map->addItem(parseItem(childElement));
-    //         }
-    //         else if (name == "container") {
-    //             map->addContainer(parseContainer(childElement));
-    //         }
-    //         else if (name == "creature") {
-    //             map->addCreature(parseCreature(childElement));
-    //         }
-    //     }
-    // }
+
     TiXmlNode* node = NULL;
     while ((node = rootElement->IterateChildren(node)) != NULL) {
         TiXmlElement* childElement = node->ToElement();
-        parseRoom(childElement);
         std::string name = childElement->ValueStr();
         if (name == "room") {
             map->addRoom(parseRoom(childElement));
@@ -312,7 +289,7 @@ Map* XMLparser::parseXML(std::string filename) {
             map->addItem(parseItem(childElement));
         }
         else if (name == "container") {
-            map->addContainer(parseContainer(childElement, umap));
+            map->addContainer(parseContainer(childElement, map));
         }
         else if (name == "creature") {
             map->addCreature(parseCreature(childElement));

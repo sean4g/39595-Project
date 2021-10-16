@@ -13,8 +13,8 @@ void Attack::setPrint(std::string print) {
     this->print = print;
 }
 
-void Attack::setAction(std::string action) {
-    this->action = action;
+void Attack::addAction(std::string action) {
+    actions.push_back(action);
 }
 
 void Attack::setCondition(Condition* condition) {
@@ -25,8 +25,8 @@ std::string Attack::getPrint() {
     return print;
 }
 
-std::string Attack::getAction() {
-    return action;
+std::vector<std::string> Attack::getActions() {
+    return actions;
 }
 
 Condition* Attack::getCondition() {
