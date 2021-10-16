@@ -7,25 +7,25 @@ class Trigger {
 private:
     std::string type;
     std::string command;
-    std::string print;
-    std::string action;
+    std::vector<std::string> prints;
+    std::vector<std::string> actions;
 
-    Condition* condition;
+    std::vector<Condition*> conditions;
 public:
     Trigger();
     virtual ~Trigger();
 
     void setType(std::string type);
     void setCommand(std::string command);
-    void setPrint(std::string print);
-    void setAction(std::string action);
+    void addPrint(std::string print);
+    void addAction(std::string action);
 
-    void setCondition(Condition* condition);
+    void addCondition(Condition* condition);
 
     std::string getType();
     std::string getCommand();
-    std::string getPrint();
-    std::string getAction();
+    std::vector<std::string> getPrints();
+    std::vector<std::string> getActions();
 
-    Condition* getCondition();
+    std::vector<Condition*> getConditions();
 };

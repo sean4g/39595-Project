@@ -22,14 +22,14 @@ Trigger* XMLparser::parseTrigger(TiXmlElement* element) {
             }   
             else if (name == "print") {
                 std::string value = childElement->GetText();
-                trigger->setPrint(value);
+                trigger->addPrint(value);
             }
             else if (name == "action") {
                 std::string value = childElement->GetText();
-                trigger->setAction(value);
+                trigger->addAction(value);
             }
             else if (name == "condition") {
-                trigger->setCondition(parseCondition(childElement));
+                trigger->addCondition(parseCondition(childElement));
             }
         }
     }
@@ -75,7 +75,7 @@ Turnon* XMLparser::parseTurnOn(TiXmlElement* element) {
                 turnOn->setPrint(value);
             }
             else if (name == "action") {
-                turnOn->setAction(value);
+                turnOn->addAction(value);
             }
         }
     }
@@ -107,7 +107,10 @@ Attack* XMLparser::parseAttack(TiXmlElement* element) {
 }
 
 Room* XMLparser::parseRoom(TiXmlElement* element, Map* map) {
-    Room* room = new Room();
+    TiXmlElement* nameElement =  element->FirstChildElement("name");
+    std::string init = nameElement->GetText();
+
+    Room* room = map->findRoom(init);
 
     for (TiXmlNode* node = element->FirstChild(); node != NULL; node = node->NextSibling()) {
         TiXmlElement* childElement = node->ToElement();
@@ -128,28 +131,22 @@ Room* XMLparser::parseRoom(TiXmlElement* element, Map* map) {
             else if (name == "item") {
                 //room->addItem(parseItem(childElement));
                 std::string value = childElement->GetText();  
-                Item* item = new Item();
-                item->setName(value);
-                map->insertItem(item);
+                Item* item = map->findItem(value);
                 room->addItem(item);
             }
             else if (name == "border") {
-                room->addBorder(parseBorder(childElement));
+                room->addBorder(parseBorder(childElement, map));
             } 
             else if (name == "container") {
                 //room->addContainer(parseItem(childElement));
                 std::string value = childElement->GetText();  
-                Container* container = new Container();
-                container->setName(value);
-                map->insertContainer(container);
+                Container* container = map->findContainer(value);
                 room->addContainer(container);
             }   
             else if (name == "creature") {
                 //room->addCreature(parseItem(childElement));
                 std::string value = childElement->GetText();  
-                Creature* creature = new Creature();
-                creature->setName(value);
-                map->insertCreature(creature);
+                Creature* creature = map->findCreature(value);
                 room->addCreature(creature);
             }   
             else if (name == "trigger") {
@@ -164,9 +161,8 @@ Item* XMLparser::parseItem(TiXmlElement* element, Map* map) {
     TiXmlElement* nameElement =  element->FirstChildElement("name");
     std::string init = nameElement->GetText();
 
-    //Item* item = map->findItem(init);
+    Item* item = map->findItem(init);
 
-    Item* item = new Item();
 
     for (TiXmlNode* node = element->IterateChildren(NULL); node != NULL; node = element->IterateChildren(node)) {
         TiXmlElement* childElement = node->ToElement();
@@ -192,7 +188,7 @@ Item* XMLparser::parseItem(TiXmlElement* element, Map* map) {
     return item;
 }
 
-Border* XMLparser::parseBorder(TiXmlElement* element) {
+Border* XMLparser::parseBorder(TiXmlElement* element, Map* map) {
     Border* border = new Border();
 
     for (TiXmlNode* node = element->IterateChildren(NULL); node != NULL; node = element->IterateChildren(node)) {
@@ -201,7 +197,8 @@ Border* XMLparser::parseBorder(TiXmlElement* element) {
             std::string name = childElement->ValueStr();
             std::string value = childElement->GetText();
             if (name == "name") {
-                border->setName(value);
+                std::string value = childElement->GetText();  
+                map->findRoom(value);
             }
             else if (name == "direction") {
                 border->setDirection(value);
@@ -211,8 +208,11 @@ Border* XMLparser::parseBorder(TiXmlElement* element) {
     return border;
 }
 
-Creature* XMLparser::parseCreature(TiXmlElement* element) {
-    Creature* creature = new Creature();
+Creature* XMLparser::parseCreature(TiXmlElement* element, Map* map) {
+    TiXmlElement* nameElement =  element->FirstChildElement("name");
+    std::string init = nameElement->GetText();
+
+    Creature* creature = map->findCreature(init);
 
     for (TiXmlNode* node = element->IterateChildren(NULL); node != NULL; node = element->IterateChildren(node)) {
         TiXmlElement* childElement = node->ToElement();
@@ -300,7 +300,7 @@ Map* XMLparser::parseXML(std::string filename) {
             map->addContainer(parseContainer(childElement, map));
         }
         else if (name == "creature") {
-            map->addCreature(parseCreature(childElement));
+            map->addCreature(parseCreature(childElement, map));
         }
     }
 

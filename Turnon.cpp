@@ -10,11 +10,13 @@ Turnon::~Turnon() {
 
 void Turnon::setPrint(std::string print) {
     this->print = print;
+    std::cout << "Turnon print set to " << print << std::endl;
 }
 
 
-void Turnon::setAction(std::string action) {
-    this->action = action;
+void Turnon::addAction(std::string action) {
+    actions.push_back(action);
+    std::cout << "Added action " << action << " to Turnon" << std::endl;
 }
 
 
@@ -22,6 +24,6 @@ std::string Turnon::getPrint() {
     return print;
 }
 
-std::string Turnon::getAction() {
-    return action;
+std::vector<std::string> Turnon::getActions() {
+    return actions;
 }

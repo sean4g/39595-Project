@@ -16,6 +16,22 @@ void Map::insertContainer(Container* container) {
 void Map::insertCreature(Creature* creature) {
     creatureMap.insert(std::pair<std::string, Creature*>(creature->getName(), creature));
 }
+ 
+Room* Map::findRoom(std::string name) {
+
+    std::unordered_map<std::string, Room*>::const_iterator got = roomMap.find(name);
+
+    if (got == roomMap.end()) {
+        Room* room = new Room();
+        room->setName(name);
+        insertRoom(room);        
+        return room;
+    }   
+    else {
+        std::cout << "Using existing Room " << got->second->getName() << " from Map" << std::endl;
+        return got->second;
+    }
+}
 
 Item* Map::findItem(std::string name) {
 
@@ -71,25 +87,31 @@ Map::Map() {
 }
 
 Map::~Map() {
-    for (Room* room : rooms){
-        delete room;
-    }
-    rooms.clear();
+    std::vector<Room*>().swap(rooms);
+    // for (Room* room : rooms){
+    //     delete room;
+    // }
+    // rooms.clear();
 
-    for (Item* item : items){
-        delete item;
-    }
-    items.clear();
+    std::vector<Item*>().swap(items);
+    // for (Item* item : items){
+    //     delete item;
+    // }
+    // items.clear();
 
-    for (Container* container : containers){
-        delete container;
-    }
+    std::vector<Container*>().swap(containers);
+    // for (Container* container : containers){
+    //     if (container != NULL){
+    //         delete container;
+    //     }
+    // }
     containers.clear();
 
-    for (Creature* creature : creatures){
-        delete creature;
-    }
-    creatures.clear();
+    std::vector<Creature*>().swap(creatures);
+    // for (Creature* creature : creatures){
+    //     delete creature;
+    // }
+    // creatures.clear();
 }
 
 void Map::addRoom(Room* room) {

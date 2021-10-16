@@ -6,27 +6,35 @@ Trigger::Trigger() {
 }
 
 Trigger::~Trigger() {
-    delete condition;
+    for (Condition* condition : conditions){
+        delete condition;
+    }
+    conditions.clear();
 }
 
 void Trigger::setType(std::string type) {
     this->type = type;
+    std::cout << "Trigger type set to " << type << std::endl;
 }
 
 void Trigger::setCommand(std::string command) {
     this->command = command;
+    std::cout << "Trigger command set to " << command << std::endl;
 }
 
-void Trigger::setPrint(std::string print) {
-    this->print = print;
+void Trigger::addPrint(std::string print) {
+    prints.push_back(print);
+    std::cout << "Added print " << print << " to Trigger" << std::endl;
 }
 
-void Trigger::setAction(std::string action) {
-    this->action = action;
+void Trigger::addAction(std::string action) {
+    actions.push_back(action);
+    std::cout << "Added action " << action << " to Trigger" << std::endl;
 }
 
-void Trigger::setCondition(Condition* condition) {
-    this->condition = condition;
+void Trigger::addCondition(Condition* condition) {
+    conditions.push_back(condition);
+    std::cout << "Added Condition to Trigger" << std::endl;
 }
 
 std::string Trigger::getType(){
@@ -37,14 +45,14 @@ std::string Trigger::getCommand() {
     return command;
 }
 
-std::string Trigger::getPrint() {
-    return print;
+std::vector<std::string> Trigger::getPrints() {
+    return prints;
 }
 
-std::string Trigger::getAction() {
-    return action;
+std::vector<std::string> Trigger::getActions() {
+    return actions;
 }
 
-Condition* Trigger::getCondition() {
-    return condition;
+std::vector<Condition*> Trigger::getConditions() {
+    return conditions;
 }
