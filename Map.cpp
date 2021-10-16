@@ -17,6 +17,55 @@ void Map::insertCreature(Creature* creature) {
     creatureMap.insert(std::pair<std::string, Creature*>(creature->getName(), creature));
 }
 
+Item* Map::findItem(std::string name) {
+
+    std::unordered_map<std::string, Item*>::const_iterator got = itemMap.find(name);
+
+    if (got == itemMap.end()) {
+        Item* item = new Item();
+        item->setName(name);
+        insertItem(item);        
+        return item;
+    }   
+    else {
+        std::cout << "Using existing Item " << got->second->getName() << " from Map" << std::endl;
+        return got->second;
+    }
+}
+
+Container* Map::findContainer(std::string name) {
+
+    std::unordered_map<std::string, Container*>::const_iterator got = containerMap.find(name);
+
+    if (got == containerMap.end()) {
+        Container* container = new Container();
+        container->setName(name);
+        insertContainer(container);        
+        return container;
+    }   
+    else {
+        std::cout << "Using existing Container " << got->second->getName() << " from Map" << std::endl;
+        return got->second;
+    }
+}
+
+Creature* Map::findCreature(std::string name) {
+
+    std::unordered_map<std::string, Creature*>::const_iterator got = creatureMap.find(name);
+
+    if (got == creatureMap.end()) {
+        Creature* creature = new Creature();
+        creature->setName(name);
+        insertCreature(creature);        
+        return creature;
+    }   
+    else {
+        std::cout << "Using existing Creature " << got->second->getName() << " from Map" << std::endl;
+        return got->second;
+    }
+}
+
+
 Map::Map() {
     std::cout << "Map object created." << std::endl;
 }

@@ -21,8 +21,8 @@ private:
     std::vector<Creature*> parseCreatures(TiXmlElement* element);
     std::vector<Container*> parseContainers(TiXmlElement* element);
 
-    Room* parseRoom(TiXmlElement* element);
-    Item* parseItem(TiXmlElement* element);
+    Room* parseRoom(TiXmlElement* element, Map* map);
+    Item* parseItem(TiXmlElement* element, Map* map);
     Border* parseBorder(TiXmlElement* element);
     Creature* parseCreature(TiXmlElement* element);
     Container* parseContainer(TiXmlElement* element, Map* map);

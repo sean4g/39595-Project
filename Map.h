@@ -28,6 +28,10 @@ public:
     void insertContainer(Container* container);
     void insertCreature(Creature* creature);
 
+    Item* findItem(std::string name);
+    Container* findContainer(std::string name);
+    Creature* findCreature(std::string name);
+
     void addRoom(Room* room);
     void addItem(Item* item);
     void addContainer(Container* container);

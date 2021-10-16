@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 #include "Map.h"
-#include "XMLParser.h"
+#include "XMLparser.h"
 
 int main(int argc, char** args) {
     std::string filename;

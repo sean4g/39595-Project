@@ -106,7 +106,7 @@ Attack* XMLparser::parseAttack(TiXmlElement* element) {
     return attack;
 }
 
-Room* XMLparser::parseRoom(TiXmlElement* element) {
+Room* XMLparser::parseRoom(TiXmlElement* element, Map* map) {
     Room* room = new Room();
 
     for (TiXmlNode* node = element->FirstChild(); node != NULL; node = node->NextSibling()) {
@@ -130,6 +130,7 @@ Room* XMLparser::parseRoom(TiXmlElement* element) {
                 std::string value = childElement->GetText();  
                 Item* item = new Item();
                 item->setName(value);
+                map->insertItem(item);
                 room->addItem(item);
             }
             else if (name == "border") {
@@ -140,6 +141,7 @@ Room* XMLparser::parseRoom(TiXmlElement* element) {
                 std::string value = childElement->GetText();  
                 Container* container = new Container();
                 container->setName(value);
+                map->insertContainer(container);
                 room->addContainer(container);
             }   
             else if (name == "creature") {
@@ -147,6 +149,7 @@ Room* XMLparser::parseRoom(TiXmlElement* element) {
                 std::string value = childElement->GetText();  
                 Creature* creature = new Creature();
                 creature->setName(value);
+                map->insertCreature(creature);
                 room->addCreature(creature);
             }   
             else if (name == "trigger") {
@@ -157,14 +160,18 @@ Room* XMLparser::parseRoom(TiXmlElement* element) {
     return room;
 }
 
-Item* XMLparser::parseItem(TiXmlElement* element) {
+Item* XMLparser::parseItem(TiXmlElement* element, Map* map) {
+    TiXmlElement* nameElement =  element->FirstChildElement("name");
+    std::string init = nameElement->GetText();
+
+    //Item* item = map->findItem(init);
+
     Item* item = new Item();
 
     for (TiXmlNode* node = element->IterateChildren(NULL); node != NULL; node = element->IterateChildren(node)) {
         TiXmlElement* childElement = node->ToElement();
         if (childElement != NULL) {
             std::string name = childElement->ValueStr();
-            
             if (name == "name") {
                 std::string value = childElement->GetText();
                 item->setName(value);
@@ -231,14 +238,17 @@ Creature* XMLparser::parseCreature(TiXmlElement* element) {
 }
 
 Container* XMLparser::parseContainer(TiXmlElement* element, Map* map) {
-    Container* container = new Container();
+    TiXmlElement* nameElement =  element->FirstChildElement("name");
+    std::string init = nameElement->GetText();
+
+    Container* container = map->findContainer(init);
+    //Container* container = new Container();
+
     for (TiXmlNode* node = element->IterateChildren(NULL); node != NULL; node = element->IterateChildren(node)) {
         TiXmlElement* childElement = node->ToElement();
         if (childElement != NULL) {
             std::string name = childElement->ValueStr();
             if (name == "name") {
-                std::string value = childElement->GetText();
-                container->setName(value);
             }
             else if (name == "status") {
                 std::string value = childElement->GetText();
@@ -256,9 +266,7 @@ Container* XMLparser::parseContainer(TiXmlElement* element, Map* map) {
             }
             else if (name == "item") {
                 std::string value = childElement->GetText();
-                Item* item = new Item();
-                map->itemMap.insert(std::pair<std::string, Item*>(value, item));
-                item->setName(value);
+                Item* item = map->findItem(value);
                 container->addItem(item);
             }
         }
@@ -283,10 +291,10 @@ Map* XMLparser::parseXML(std::string filename) {
         TiXmlElement* childElement = node->ToElement();
         std::string name = childElement->ValueStr();
         if (name == "room") {
-            map->addRoom(parseRoom(childElement));
+            map->addRoom(parseRoom(childElement, map));
         }
         else if (name == "item") {
-            map->addItem(parseItem(childElement));
+            map->addItem(parseItem(childElement, map));
         }
         else if (name == "container") {
             map->addContainer(parseContainer(childElement, map));
