@@ -3,6 +3,8 @@
 #include <vector>
 #include "Map.h"
 #include "XMLparser.h"
+#include "Player.h"
+#include "Dungeon.h"
 
 int main(int argc, char** args) {
     std::string filename;
@@ -18,5 +20,23 @@ int main(int argc, char** args) {
 
     XMLparser parser;
     Map* map = parser.parseXML(filename);
-	delete map;
+
+	Player player(map);
+	Dungeon dungeon;
+	std::string command;
+	player.addItem(map->findItem("torch"));
+	
+	while (!dungeon.getGameOver()) {
+		std::cout << "Type your command: ";
+		std::cin >> command;
+		if (command == "i" || command == "inventory") {
+			player.printInventory();
+		}
+		if (command == "q") {
+			std::cout << "Quitting game..." << std::endl; 
+			break;
+		}
+	}
+
+	//delete map;
 }
