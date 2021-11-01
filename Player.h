@@ -15,12 +15,15 @@ public:
     Player(Map* map); 
     virtual ~Player();
     void setStatus(std::string status);
-    void addItem(Item* item);
+    void addItem(std::string item);
+    void dropItem(std::string item);
     void setRoom(Room* room);
+
+    void lookRoom();
+    void moveRoom(std::string direction, Map* map);
 
     std::string getStatus();
     std::vector<Item*> getInventory();
     Room* getCurrentRoom();
-    
     void printInventory(); 
 };

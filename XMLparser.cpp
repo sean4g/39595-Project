@@ -195,6 +195,7 @@ Border* XMLparser::parseBorder(TiXmlElement* element, Map* map) {
             if (name == "name") {
                 std::string value = childElement->GetText();  
                 map->findRoom(value);
+                border->setName(value);
             }
             else if (name == "direction") {
                 border->setDirection(value);
@@ -277,7 +278,7 @@ Map* XMLparser::parseXML(std::string filename) {
 	TiXmlElement* rootElement = doc.RootElement();
 	if (rootElement == NULL) {
 		std::cerr << "Invalid XML file, contains no data" << std::endl;
-		return map;
+		return NULL;
 	}
 
     TiXmlNode* node = NULL;

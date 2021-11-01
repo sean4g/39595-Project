@@ -22,7 +22,7 @@ private:
 public:
     Room();
     virtual ~Room();
-
+    
     void setName(std::string name);
     void setDescription(std::string description);
     void setType(std::string type);
