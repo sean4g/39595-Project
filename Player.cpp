@@ -27,8 +27,6 @@ void Player::addItem(std::string item)
     unsigned int i = 0;
     while (true)
     {
-        
-        std::cout << i;
         if (i == currentRoom->getItems().size())
         {
             std::cout << "Item not in room." << std::endl;
@@ -37,27 +35,12 @@ void Player::addItem(std::string item)
         if (currentRoom->getItems()[i]->getName() == item) 
         {
             inventory.push_back(currentRoom->getItems()[i]);
-            std::cout << currentRoom->getItems().size() << std::endl;
             currentRoom->getItems().erase(currentRoom->getItems().begin() + i);
-            std::cout << currentRoom->getItems().size() << std::endl;
             std::cout << "Item " << item << " added to the inventory." << std::endl;
             return;
         }
         i++;
     }
-
-    /*    for (Item* roomItem : roomItems) {
-            if(roomItem->getName() == item) {
-                inventory.push_back(roomItem);
-                std::cout << roomItem << std::endl;
-                delete roomItem;
-                std::cout << roomItem->getName() << std::endl;
-                std::cout << "Item " << item << " added to the inventory." << std::endl;
-                break;
-            }
-            i++;
-        }
-    */
 
 }
 
