@@ -24,16 +24,17 @@ void Player::setRoom(Room *room)
 
 void Player::addItem(std::string item)
 {
-    unsigned i = 0;
-    std::vector<Item *> roomItems = currentRoom->getItems();
+    unsigned int i = 0;
     while (true)
     {
-        if (i == roomItems.size())
+        
+        std::cout << i;
+        if (i == currentRoom->getItems().size())
         {
             std::cout << "Item not in room." << std::endl;
             return;
         }
-        if (currentRoom->getItems()[i]->getName() == item)
+        if (currentRoom->getItems()[i]->getName() == item) 
         {
             inventory.push_back(currentRoom->getItems()[i]);
             std::cout << currentRoom->getItems().size() << std::endl;

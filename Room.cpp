@@ -93,7 +93,7 @@ std::string Room::getStatus() {
     return status;
 }
 
-std::vector<Item*> Room::getItems() {
+std::vector<Item*>& Room::getItems() {
     return items;
 }
 

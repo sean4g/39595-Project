@@ -39,7 +39,7 @@ public:
     std::string getType();
     std::string getStatus();
 
-    std::vector<Item*> getItems();
+    std::vector<Item*>& getItems();
     std::vector<Border*> getBorders();
     std::vector<Container*> getContainers();
     std::vector<Creature*> getCreatures();

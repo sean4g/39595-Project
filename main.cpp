@@ -85,5 +85,6 @@ int main(int argc, char** args) {
 	}
 
 	delete map;
+	return 0;
 }
 
