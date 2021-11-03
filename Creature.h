@@ -27,9 +27,9 @@ public:
     void addTrigger(Trigger* trigger);
 
     std::string getName();
-    std::vector<std::string> getVulnerabilities();
+    std::vector<std::string>& getVulnerabilities();
 
     Attack* getAttack();
-    std::vector<Condition*> getConditions();
-    std::vector<Trigger*> getTriggers();
+    std::vector<Condition*>& getConditions();
+    std::vector<Trigger*>& getTriggers();
 };

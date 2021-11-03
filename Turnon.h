@@ -16,5 +16,5 @@ public:
 
 
     std::string getPrint();
-    std::vector<std::string> getActions();
+    std::vector<std::string>& getActions();
 };

@@ -23,7 +23,7 @@ public:
     void moveRoom(std::string direction, Map* map);
 
     std::string getStatus();
-    std::vector<Item*> getInventory();
+    std::vector<Item*>& getInventory();
     Room* getCurrentRoom();
     void printInventory(); 
 };

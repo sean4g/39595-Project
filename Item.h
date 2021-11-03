@@ -31,7 +31,7 @@ public:
     std::string getDescription();
 
     Turnon* getTurnon();
-    std::vector<Trigger*> getTriggers();
+    std::vector<Trigger*>& getTriggers();
 
     bool operator==(Item* item) const {
         return item->name == name;

@@ -40,8 +40,8 @@ public:
     std::string getStatus();
 
     std::vector<Item*>& getItems();
-    std::vector<Border*> getBorders();
-    std::vector<Container*> getContainers();
-    std::vector<Creature*> getCreatures();
-    std::vector<Trigger*> getTriggers();
+    std::vector<Border*>& getBorders();
+    std::vector<Container*>& getContainers();
+    std::vector<Creature*>& getCreatures();
+    std::vector<Trigger*>& getTriggers();
 };
