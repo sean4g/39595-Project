@@ -30,7 +30,7 @@ public:
     std::string getStatus();
     std::vector<std::string> getAccepts();
 
-    std::vector<Item*> getItems();
-    std::vector<Condition*> getConditions();
-    std::vector<Trigger*> getTriggers();
+    std::vector<Item*>& getItems();
+    std::vector<Condition*>& getConditions();
+    std::vector<Trigger*>& getTriggers();
 };

@@ -19,7 +19,7 @@ public:
     void addCondition(Condition* condition);
 
     std::string getPrint();
-    std::vector<std::string> getActions();
+    std::vector<std::string>& getActions();
 
-    std::vector<Condition*> getConditions();
+    std::vector<Condition*>& getConditions();
 };

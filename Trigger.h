@@ -24,8 +24,8 @@ public:
 
     std::string getType();
     std::string getCommand();
-    std::vector<std::string> getPrints();
-    std::vector<std::string> getActions();
+    std::vector<std::string>& getPrints();
+    std::vector<std::string>& getActions();
 
-    std::vector<Condition*> getConditions();
+    std::vector<Condition*>& getConditions();
 };
