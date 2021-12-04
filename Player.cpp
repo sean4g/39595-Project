@@ -159,7 +159,7 @@ Room *Player::getCurrentRoom()
     return currentRoom;
 }
 
-std::vector<Item *> Player::getInventory()
+std::vector<Item *>& Player::getInventory()
 {
     return inventory;
 }

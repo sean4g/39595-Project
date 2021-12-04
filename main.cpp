@@ -2,6 +2,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <sstream>
 #include "Map.h"
 #include "XMLparser.h"
 #include "Player.h"

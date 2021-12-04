@@ -25,6 +25,6 @@ std::string Turnon::getPrint() {
     return print;
 }
 
-std::vector<std::string> Turnon::getActions() {
+std::vector<std::string>& Turnon::getActions() {
     return actions;
 }

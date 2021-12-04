@@ -32,10 +32,10 @@ std::string Attack::getPrint() {
     return print;
 }
 
-std::vector<std::string> Attack::getActions() {
+std::vector<std::string>& Attack::getActions() {
     return actions;
 }
 
-std::vector<Condition*> Attack::getConditions() {
+std::vector<Condition*>& Attack::getConditions() {
     return conditions;
 }

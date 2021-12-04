@@ -56,7 +56,7 @@ std::string Item::getDescription() {
     return description;
 }
 
-std::vector<Trigger*> Item::getTriggers() {
+std::vector<Trigger*>& Item::getTriggers() {
     return triggers;
 }
 

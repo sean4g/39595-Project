@@ -50,7 +50,7 @@ std::string Creature::getName() {
     return name;
 }
 
-std::vector<std::string> Creature::getVulnerabilities() {
+std::vector<std::string>& Creature::getVulnerabilities() {
     return vulnerabilities;
 }
 
@@ -58,10 +58,10 @@ Attack* Creature::getAttack() {
     return attack;
 }
 
-std::vector<Condition*> Creature::getConditions() {
+std::vector<Condition*>& Creature::getConditions() {
     return conditions;
 }
 
-std::vector<Trigger*> Creature::getTriggers() {
+std::vector<Trigger*>& Creature::getTriggers() {
     return triggers;
 }

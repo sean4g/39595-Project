@@ -47,14 +47,14 @@ std::string Trigger::getCommand() {
     return command;
 }
 
-std::vector<std::string> Trigger::getPrints() {
+std::vector<std::string>& Trigger::getPrints() {
     return prints;
 }
 
-std::vector<std::string> Trigger::getActions() {
+std::vector<std::string>& Trigger::getActions() {
     return actions;
 }
 
-std::vector<Condition*> Trigger::getConditions() {
+std::vector<Condition*>& Trigger::getConditions() {
     return conditions;
 }

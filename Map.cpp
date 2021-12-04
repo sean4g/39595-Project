@@ -134,18 +134,18 @@ void Map::addCreature(Creature* creature) {
     creatures.push_back(creature);
 }
 
-std::vector<Room*> Map::getRooms() {
+std::vector<Room*>& Map::getRooms() {
     return rooms;
 }
 
-std::vector<Item*> Map::getItems() {
+std::vector<Item*>& Map::getItems() {
     return items;
 }
 
-std::vector<Container*> Map::getContainers() {
+std::vector<Container*>& Map::getContainers() {
     return containers;
 }
 
-std::vector<Creature*> Map::getCreatures() {
+std::vector<Creature*>& Map::getCreatures() {
     return creatures;
 }

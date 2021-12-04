@@ -65,14 +65,14 @@ std::vector<std::string> Container::getAccepts() {
     return accepts;
 }
 
-std::vector<Item*> Container::getItems() {
+std::vector<Item*>& Container::getItems() {
     return items;
 }
 
-std::vector<Condition*> Container::getConditions() {
+std::vector<Condition*>& Container::getConditions() {
     return conditions;
 }
 
-std::vector<Trigger*> Container::getTriggers() {
+std::vector<Trigger*>& Container::getTriggers() {
     return triggers;
 }

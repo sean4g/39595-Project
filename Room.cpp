@@ -97,18 +97,18 @@ std::vector<Item*>& Room::getItems() {
     return items;
 }
 
-std::vector<Border*> Room::getBorders() {
+std::vector<Border*>& Room::getBorders() {
     return borders;
 }
 
-std::vector<Container*> Room::getContainers() {
+std::vector<Container*>& Room::getContainers() {
     return containers;
 }
 
-std::vector<Creature*> Room::getCreatures() {
+std::vector<Creature*>& Room::getCreatures() {
     return creatures;
 }
 
-std::vector<Trigger*> Room::getTriggers() {
+std::vector<Trigger*>& Room::getTriggers() {
     return triggers;
 }
