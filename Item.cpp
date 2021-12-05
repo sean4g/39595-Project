@@ -3,6 +3,8 @@
 
 Item::Item() {
     std::cout << "Item object created." << std::endl;
+    setTurnon(NULL);
+    setWriting("Nothing written.");
 }
 
 Item::~Item() {

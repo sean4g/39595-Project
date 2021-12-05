@@ -22,6 +22,11 @@ public:
     void lookRoom();
     void moveRoom(std::string direction, Map* map);
 
+    void openContainer(std::string container);
+    void putContainer(std::string container, std::string item);
+
+    void readItem(std::string item);
+
     std::string getStatus();
     std::vector<Item*>& getInventory();
     Room* getCurrentRoom();

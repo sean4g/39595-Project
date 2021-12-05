@@ -8,19 +8,20 @@
 #include "Player.h"
 #include "Dungeon.h"
 
-std::string getWords() {
+std::vector<std::string> getWords() {
 	std::string value;
 	std::vector<std::string> values;
 
 	getline(std::cin, value);
 
-	//std::cout << value << std::endl;
-	//values.push_back(value);
+	std::stringstream check1(value);
+	std::string intermediate;
 
-	//std::cin >> value;
-	//values.push_back(value);
+	while(getline(check1, intermediate, ' ')) {
+		values.push_back(intermediate);
+	}
 
-	return value;
+	return values;
 }
 
 int main(int argc, char** args) {
@@ -53,31 +54,44 @@ int main(int argc, char** args) {
 	while (!dungeon.getGameOver()) {
 		std::cout << "Type your command: ";
 		std::string value = "";
-		command = getWords();
+		commands = getWords();
 
-		if (command == "i") {
+		if (commands[0] == "i") {
 			player.printInventory();
 		}
-		else if (command == "q") {
+		else if (commands[0] == "q") {
 			std::cout << "Quitting game..." << std::endl; 
 			break;
 		}
-		else if (command == "l") {
+		else if (commands[0] == "l") {
 			player.lookRoom();
 		}
-		else if (command == "n" || command == "s" || command == "e" || command == "w")
+		else if (commands[0] == "n" || commands[0] == "s" || commands[0] == "e" || commands[0] == "w")
 		{
-			player.moveRoom(command, map);
+			player.moveRoom(commands[0], map);
 		}
-		else if (command.substr(0,4) == "take") {
-			take = command.substr(5);
+		else if (commands[0] == "take") {
+			take = commands[1];
 			//std::cout << command << std::endl;
 			player.addItem(take);
 			
 		}
-		else if (command.substr(0,4) == "drop") {
-			drop = command.substr(5);
+		else if (commands[0] == "drop") {
+			drop = commands[1];
 			player.dropItem(drop);
+		}
+		else if (commands[0] == "open") {
+			std::string container = commands[1];
+			player.openContainer(container);
+		}
+		else if (commands[0] == "put") {
+			std::string item1 = commands[1];
+			std::string container = commands[3];
+			player.putContainer(container, item1);
+		}
+		else if (commands[0] == "read") {
+			std::string item1 = commands[1];
+			player.readItem(item1);
 		}
 		else {
 			std::cout << "This command is not understood." << std::endl;

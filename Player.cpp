@@ -179,3 +179,91 @@ void Player::printInventory()
         std::cout << "Inventory: empty" << std::endl;
     }
 }
+
+void Player::openContainer(std::string container){
+    std::vector<Container*> containers = currentRoom->getContainers();
+    int i = 0;
+    int size = containers.size();
+    std::cout << size;
+    for (i = 0; i < size; i++){
+        std::cout << containers[i]->getName() << std::endl;
+        if (containers[i]->getName() == container)
+        {
+
+            std::cout << container << " contains ";
+            for (unsigned int j = 0; j < containers[i]->getItems().size(); j++){
+                std::cout << containers[i]->getItems()[j]->getName() << std::endl;
+            }
+            for (unsigned int j = 0; j < containers[i]->getItems().size(); j++){
+                currentRoom->addItem(containers[i]->getItems()[j]);
+                containers[i]->getItems().erase(containers[i]->getItems().begin() + j);
+            }
+            return;
+        }
+    }
+
+    if (i == size) 
+    {
+        std::cout << "Container not in room." << std::endl;
+        return;
+    }
+}
+
+void Player::putContainer(std::string container, std::string item){
+    std::vector<Container*> containers = currentRoom->getContainers();
+    Item* put;
+
+    int i = 0;
+    int j = 0;
+    int size = containers.size();
+    int invSize = inventory.size();
+
+    for (; j < invSize; j++) {
+        if (inventory[j]->getName() == item){
+            //containers[i]->addItem(inventory[j]);
+            put = inventory[j];
+            inventory.erase(inventory.begin() + j);
+            
+            break;
+        }
+    }
+    if (j == invSize) {
+        std::cout << "Item not in inventory." << std::endl;
+        return;         
+    }
+
+    for (i = 0; i < size; i++){
+        std::cout << containers[i]->getName() << std::endl;
+        if (containers[i]->getName() == container)
+        {
+            containers[i]->addItem(put);
+            std::cout << "Put " << item << " in " << container << std::endl;
+            return;
+        }
+    }
+    if (i == size) 
+    {
+        std::cout << "Container not in room." << std::endl;
+        return;
+    }
+}
+
+
+void Player::readItem(std::string item) {
+    int i = 0;
+    int size = inventory.size();
+
+    for (i = 0; i < size; i++){
+        if (inventory[i]->getName() == item)
+        {
+            std::cout << inventory[i]->getWriting() << std::endl;
+            return;
+        }
+    }
+    if (i == size) 
+    {
+        std::cout << "Item not in invetory." << std::endl;
+        return;
+    }
+
+}
