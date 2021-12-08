@@ -3,22 +3,22 @@
 
 void Map::insertRoom(Room* room) {
     roomMap.insert(std::pair<std::string, Room*>(room->getName(), room));
-    std::cout << "Added room " << room->getName() << " to Map" << std::endl;
+    // std::cout << "Added room " << room->getName() << " to Map" << std::endl;
 }
 
 void Map::insertItem(Item* item) {
     itemMap.insert(std::pair<std::string, Item*>(item->getName(), item));
-    std::cout << "Added item " << item->getName() << " to Map" << std::endl;
+    // std::cout << "Added item " << item->getName() << " to Map" << std::endl;
 }
 
 void Map::insertContainer(Container* container) {
     containerMap.insert(std::pair<std::string, Container*>(container->getName(), container));
-    std::cout << "Added container " << container->getName() << " to Map" << std::endl;
+    // std::cout << "Added container " << container->getName() << " to Map" << std::endl;
 }
 
 void Map::insertCreature(Creature* creature) {
     creatureMap.insert(std::pair<std::string, Creature*>(creature->getName(), creature));
-    std::cout << "Added creature " << creature->getName() << " to Map" << std::endl;
+    // std::cout << "Added creature " << creature->getName() << " to Map" << std::endl;
 }
  
 Room* Map::findRoom(std::string name) {
@@ -32,7 +32,6 @@ Room* Map::findRoom(std::string name) {
         return room;
     }   
     else {
-        std::cout << "Using existing Room " << got->second->getName() << " from Map" << std::endl;
         return got->second;
     }
 }
@@ -48,7 +47,18 @@ Item* Map::findItem(std::string name) {
         return item;
     }   
     else {
-        std::cout << "Using existing Item " << got->second->getName() << " from Map" << std::endl;
+        return got->second;
+    }
+}
+
+Item* Map::findItemN(std::string name) {
+
+    std::unordered_map<std::string, Item*>::const_iterator got = itemMap.find(name);
+
+    if (got == itemMap.end()) {
+        return nullptr;
+    }   
+    else {
         return got->second;
     }
 }
@@ -64,7 +74,18 @@ Container* Map::findContainer(std::string name) {
         return container;
     }   
     else {
-        std::cout << "Using existing Container " << got->second->getName() << " from Map" << std::endl;
+        return got->second;
+    }
+}
+
+Container* Map::findContainerN(std::string name) {
+
+    std::unordered_map<std::string, Container*>::const_iterator got = containerMap.find(name);
+
+    if (got == containerMap.end()) {
+        return nullptr;
+    }   
+    else {
         return got->second;
     }
 }
@@ -80,7 +101,6 @@ Creature* Map::findCreature(std::string name) {
         return creature;
     }   
     else {
-        std::cout << "Using existing Creature " << got->second->getName() << " from Map" << std::endl;
         return got->second;
     }
 }

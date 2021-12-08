@@ -10,6 +10,8 @@ private:
     std::string name;
     std::string status;
     std::vector<std::string> accepts;
+
+    
     
     std::vector<Item*> items;
     std::vector<Condition*> conditions;
@@ -17,6 +19,8 @@ private:
 public:
     Container();
     virtual ~Container();
+
+    std::string open;
 
     void setName(std::string name);  
     void setStatus(std::string status);

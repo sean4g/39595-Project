@@ -3,6 +3,7 @@
 
 Container::Container() {
     std::cout << "Container object created" << std::endl;
+    status = "";
 }
 
 Container::~Container() {

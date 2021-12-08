@@ -30,7 +30,9 @@ public:
 
     Room* findRoom(std::string name);
     Item* findItem(std::string name);
+    Item* findItemN(std::string name);
     Container* findContainer(std::string name);
+    Container* findContainerN(std::string name);
     Creature* findCreature(std::string name);
 
     void addRoom(Room* room);

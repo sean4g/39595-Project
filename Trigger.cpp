@@ -3,6 +3,10 @@
 
 Trigger::Trigger() {
     std::cout << "Trigger object created." << std::endl;
+    type = "single";
+    used = false;
+    command = "";
+    
 }
 
 Trigger::~Trigger() {
@@ -24,6 +28,10 @@ void Trigger::setCommand(std::string command) {
     std::cout << "Trigger command set to " << command << std::endl;
 }
 
+void Trigger::setUsed(bool used) {
+    this->used = used;
+}
+
 void Trigger::addPrint(std::string print) {
     prints.push_back(print);
     std::cout << "Added print " << print << " to Trigger" << std::endl;
@@ -42,6 +50,11 @@ void Trigger::addCondition(Condition* condition) {
 std::string Trigger::getType(){
     return type;
 }
+
+bool Trigger::getUsed() {
+    return used;
+}
+
 
 std::string Trigger::getCommand() {
     return command;

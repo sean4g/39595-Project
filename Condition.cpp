@@ -3,6 +3,8 @@
 
 Condition::Condition() {
     std::cout << "Condition object created." << std::endl;
+    has = "";
+    object = "";
 }
 
 Condition::~Condition() {
